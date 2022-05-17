@@ -17,3 +17,104 @@
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+const TEXT = 'Lorem ipsum dolor sit amet';
+const MORSE = '-... ..- . -. .- ... / -. --- -.-. .... . ...';
+const textToTranslate = MORSE;
+const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,';
+const ALPHABET_MORSE = {
+    A: '.-',
+    B: '-...',
+    C: '-.-.',
+    D: '-..',
+    E: '.',
+    F: '..-.',
+    G: '--.',
+    H: '....',
+    I: '..',
+    J: '.---',
+    K: '-.-',
+    L: '.-..',
+    M: '--',
+    N: '-.',
+    O: '---',
+    P: '.--.',
+    Q: '--.-',
+    R: '.-.',
+    S: '...',
+    T: '-',
+    U: '..-',
+    V: '...-',
+    W: '.--',
+    X: '-..-',
+    Y: '-.--',
+    Z: '--..',
+    ' ' : '/',
+    '0': '-----',
+    '1': '.----',
+    '2': '..---',
+    '3': '...--',
+    '4': '....-',
+    '5': '.....',
+    '6': '-....',
+    '7': '--...',
+    '8': '---..',
+    '9': '----.',
+    '.': '.-.-.-',
+    ',': '--..--'
+}
+
+// console.log(ALPHABET_MORSE);
+
+function isMorse(text) {
+    let splitted = text.split(' ');
+    return splitted.every(letter => {
+        if(letter === '') {
+            letter = ' ';
+            // console.log('espacio');
+        }
+        return Object.values(ALPHABET_MORSE).includes(letter);
+    });
+}
+
+if (isMorse(textToTranslate)) {
+    console.log('isMorse');
+    console.log(morseToString(textToTranslate));
+} else {
+    console.log('isNotMorse');
+    console.log(stringToMorse(textToTranslate));
+}
+
+function morseToString(text) {
+    let splitted = text.split(' ');
+    console.log(splitted);
+    // console.log(splitted.includes(''));
+    // console.log(splitted.indexOf(''));
+    splitted.forEach(letter => {
+        if(letter === '') {
+            letter = '-----';
+        }
+    });
+    console.log(splitted);
+    return splitted.map(letter =>
+        Object.keys(ALPHABET_MORSE).find(key =>
+            ALPHABET_MORSE[key] === letter
+        )
+    ).join('');
+}
+
+function stringToMorse(text) {
+    text = text.toUpperCase();
+    let splitted = text.split(' ');
+    let exit = '';
+    splitted.forEach(word => {
+        let letters = word.split('');
+        console.log(letters);
+        letters.forEach(letter => {
+            exit += ALPHABET_MORSE[letter];
+            exit += ' '
+        });
+        exit += '  ';
+    });
+    return exit;
+}

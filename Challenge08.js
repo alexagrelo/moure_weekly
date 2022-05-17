@@ -14,3 +14,12 @@
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+const DECIMAL = 255;
+let binary = '';
+let remainder = DECIMAL;
+while (remainder > 0) {
+    binary += remainder % 2;
+    remainder = Math.floor(remainder / 2);
+}
+console.log(binary);

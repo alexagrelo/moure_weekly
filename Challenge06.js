@@ -15,3 +15,29 @@
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+
+const originalString = 'supercalifragilisticexpialidocious';
+
+// 1. Convertir el String en Array de caracteres
+let splitted = originalString.split('');
+// console.log(splitted);
+
+// 2. Convertir el Array de caracteres en Cadena de caracteres de orden invertido
+// MÉTODO DIRECTO -> No válido para Challenge06.js
+// let reversed = splitted.reverse();
+// console.log(reversed);
+
+// MÉTODO NO DIRECTO -> Válido para Challenge06.js
+// let manuallyReversed = splitted.reduce((prev, curr) => {
+//     console.log(prev, curr);
+//     return curr + prev;
+// });
+// console.log(manuallyReversed);
+
+// 3. Invertir array manualmente
+let reversed = '';
+for (let i = 0; i < splitted.length; i++) { 
+    reversed += splitted[splitted.length - i - 1];
+}
+console.log(reversed);
